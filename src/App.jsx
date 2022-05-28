@@ -5,19 +5,11 @@ import InputBox from "./components/InputBox/InputBox";
 import ButtonGroup from "./components/ButtonGroup/ButtonGroup";
 import Tarea from "./components/Tarea/Tarea";
 import { Flex, useColorModeValue, Stack, Input } from "@chakra-ui/react";
-
-const generateId = () => {
-  let id = 0;
-  return () => {
-    id++;
-    return id;
-  };
-};
-const getId = generateId();
+import { v4 as uuidv4 } from "uuid";
 
 const App = () => {
   const [arrayTareas, setTareas] = useState(
-    JSON.parse(window.localStorage.getItem("arrayTareas"))
+    JSON.parse(window.localStorage.getItem("arrayTareas")) || [] 
   );
   const [filtro, setFiltro] = useState("todos");
   const [inputS, setInput] = useState("");
@@ -45,7 +37,8 @@ const App = () => {
   // setLocalStorage([1, 2, 3]);
 
   const addList = (nota) => {
-    const notaAgregada= [...arrayTareas, { nota, isCompleted: false, id: getId() }]
+    const notaAgregada= [...arrayTareas, { nota, isCompleted: false, id:uuidv4()
+ }]
     setTareas(notaAgregada);
     setLocalStorage(notaAgregada);
   };

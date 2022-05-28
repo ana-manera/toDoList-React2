@@ -19,7 +19,6 @@ const InputBox = ({ addList, setLocalStorage, info }) => {
   const handleOnChange = (event) => {
     setNota(event.target.value);
     setInput(event.target.value);
-    setLocalStorage(event.target.value)
   };
 
   const handleOnClick = () => {
